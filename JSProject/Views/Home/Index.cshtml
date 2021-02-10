@@ -1,0 +1,164 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+	<div class="text-center">
+		<h1 class="display-4">Welcome</h1>
+		<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+		<div>
+
+
+
+			Name : <input type="text" id="name" /> <br />
+			File: <input type="file" id="file" multiple/> <br />
+			<input type="button" value="Click" id="btnSubmit" />
+
+
+
+
+
+
+
+			@*<div class="mb-2">
+			<img id="image" src="~/1.jpg" style="height:200px; width:300px;" />
+
+		</div>
+		<div>
+			<button id="result">Result</button>
+
+		</div>
+		<div>
+			<textarea id="result1" rows="39" cols="59"></textarea>
+		</div>*@
+
+
+			@*<div class="mb-2">
+			<img id="inputImage" src="~/1.jpg" style="height:200px; width:300px;" />
+
+		</div>*@
+
+		</div>
+	   
+		
+
+
+
+	</div>
+
+@section Scripts {
+
+	<script>
+
+
+
+
+
+
+
+		 $(function () {
+			$("#btnSubmit").click(function () {
+				var formData = new FormData();
+				formData.append("Name", $("#name").val());
+				var files = $("#file").get(0).files;
+				for (var i = 0; i < files.length; i++) {
+					formData.append("Photos", files[i]);
+				}
+                $.ajax({
+                    url: "/Home/Index",
+                    method: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data:formData,
+					success: function (response) {
+						alert(response);
+					}
+				});
+			});
+		});
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//var str = "Decode";
+		//var base64 = btoa(str);
+		//var decode = atob(base64);
+
+		//console.log(str);
+		//console.log(base64);
+		//console.log(decode);
+
+
+	   
+
+
+		//$(document).ready(function () {
+
+		//	$('result').click(function () {
+		//		var img = document.getElementById('image');
+				
+		//		img.crossOrigin = 'Anonymous';
+
+
+		//		var canvas = document.createElement('canvas');
+		//		var ctx = canvas.getContext('2d');
+		//	   canvas.height = this.naturalHeight;
+		//	   canvas.width = this.naturalWidth;
+		//		ctx.drawImage(this, 0, 0);
+		//		var data = canvas.toDataURL('img/jpeg').split(",")[1];
+		//		console.log(data);
+
+		//	});
+
+		//});
+
+
+
+
+		//var img = document.getElementById('image');
+		//var input = document.getElementById('result1');
+		//img.crossOrigin = 'Anonymous';
+		//img.onload = function () {
+
+		//	var canvas = document.createElement('canvas');
+		//	var ctx = canvas.getContext('2d');
+		//	canvas.height = this.naturalHeight;
+		//	canvas.width = this.naturalWidth;
+		//	ctx.drawImage(this, 0, 0);
+		//	var data = canvas.toDataURL('img/jpeg').split(",")[1];
+		//	document.getElementById('result1').value = data;
+			
+		//}
+
+
+
+	
+	</script>
+
+
+}
